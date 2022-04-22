@@ -1,6 +1,6 @@
 const repoBase = require('./repository-base');
 
-const connectionString = "./data/products.json"
+const connectionString = "./src/data/products.json"
 
 exports.findAllProducts = () => {
   return repoBase.findAll(connectionString);
