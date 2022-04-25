@@ -33,12 +33,5 @@
     "description": "A more elegant weapon for a more civilized age",
     "category": "Fantasy Weapon",
     "price": 150000
-  },
-  {
-    "id": 6,
-    "name": "Blaster",
-    "description": "The trusted weapon at your side",
-    "category": "Fantasy Weapon",
-    "price": 2000
   }
 ]

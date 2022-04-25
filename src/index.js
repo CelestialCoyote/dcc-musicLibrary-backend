@@ -4,6 +4,8 @@ const cors = require('cors');
 const repoContext = require('./repository/repository-wrapper');
 const productValidate = require('./middleware/product-validation');
 const productLogger = require('./middleware/product-logger');
+const songValidate = require('./middleware/song-validation');
+const songLogger = require('./middleware/song-logger');
 
 
 // Initialize Express framework save to constant 'app'.
@@ -64,6 +66,15 @@ app.post('/api/products', [productLogger, productValidate], (req, res) => {
     const addedProduct = repoContext.products.createProduct(newProduct);
 
     return res.status(201).send(addedProduct);
+});
+
+// POST new song.
+// http://localhost:5005/songs
+app.post('/api/songs', [songLogger, songValidate], (req, res) => {
+    const newSong = req.body;
+    const addedSong = repoContext.songs.createSong(newSong);
+
+    return res.status(201).send(addedSong);
 });
 
 // PUT new product.
