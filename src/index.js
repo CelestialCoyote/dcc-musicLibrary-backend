@@ -41,6 +41,7 @@ app.get('/api/songs', (req, res) => {
     return res.send(songs);
 });
 
+
 // GET product by id.
 // http://localhost:5005/products/:id
 app.get('/api/products/:id', (req, res) => {
@@ -58,6 +59,7 @@ app.get('/api/songs/:id', (req, res) => {
 
     return res.send(song);
 });
+
 
 // POST new product.
 // http://localhost:5005/products
@@ -77,7 +79,8 @@ app.post('/api/songs', [songLogger, songValidate], (req, res) => {
     return res.status(201).send(addedSong);
 });
 
-// PUT new product.
+
+// PUT update product.
 // http://localhost:5005/products/:id
 app.put('/api/products/:id',[productValidate], (req, res) => {
     const id = parseInt(req.params.id);
@@ -87,6 +90,17 @@ app.put('/api/products/:id',[productValidate], (req, res) => {
     return res.send(productToUpdate);
 });
 
+// PUT update song.
+// http://localhost:5005/songs/:id
+app.put('/api/songs/:id',[songValidate], (req, res) => {
+    const id = parseInt(req.params.id);
+    const songPropertiesToModify = req.body;
+    const songToUpdate = repoContext.songs.updateSong(id, songPropertiesToModify);
+
+    return res.send(songToUpdate);
+});
+
+
 // DELETE product.
 // http://localhost:5005/products/:id
 app.delete('/api/products/:id', (req, res) => {
@@ -94,6 +108,15 @@ app.delete('/api/products/:id', (req, res) => {
     const deletedProduct = repoContext.products.deleteProduct(id);
 
     return res.send(deletedProduct);
+});
+
+// DELETE song.
+// http://localhost:5005/songs/:id
+app.delete('/api/songs/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const deletedSong = repoContext.songs.deleteSong(id);
+
+    return res.send(deletedSong);
 });
 
 
