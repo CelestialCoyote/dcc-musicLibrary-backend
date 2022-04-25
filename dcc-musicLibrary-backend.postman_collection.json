@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "ffaea39f-b6bb-4874-a42d-f260e09545e8",
+		"name": "dcc-musicLibrary-backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET base URL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all songs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/api/songs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"songs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET song by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/api/songs/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"songs",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new song",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"title\": \"Ramble On\", \n    \"album\": \"The Complete Studio Albums\",\n    \"artist\": \"Led Zeppelin\",\n    \"genre\": \"Rock\",\n    \"releaseDate\": \"07/11/2013\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/songs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"songs",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT update existing song ",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"id\": 25,\n    \"title\": \"Ramble On\", \n    \"album\": \"Led Zeppelin II\",\n    \"artist\": \"Led Zeppelin\",\n    \"genre\": \"Rock\",\n    \"releaseDate\": \"10/22/1969\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5005/api/songs/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"songs",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a single song",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5005/api/products/25",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5005",
+					"path": [
+						"api",
+						"products",
+						"25"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
