@@ -19,6 +19,7 @@ app.use(cors());
 // Base URL http://locatlhost:5005
 app.get('/', (req, res) => {
     console.log(req.body);
+
     return res.send('Response from the express server base URL.');
 });
 
@@ -30,6 +31,14 @@ app.get('/api/products', (req, res) => {
     return res.send(products);
 });
 
+// GET all songs.
+// http://localhost:5005/songs
+app.get('/api/songs', (req, res) => {
+    const songs = repoContext.songs.findAllSongs();
+
+    return res.send(songs);
+});
+
 // GET product by id.
 // http://localhost:5005/products/:id
 app.get('/api/products/:id', (req, res) => {
@@ -37,6 +46,15 @@ app.get('/api/products/:id', (req, res) => {
     const product = repoContext.products.findProductById(id);
 
     return res.send(product);
+});
+
+// GET song by id.
+// http://localhost:5005/songs/:id
+app.get('/api/songs/:id', (req, res) => {
+    const id = req.params.id;
+    const song = repoContext.songs.findSongById(id);
+
+    return res.send(song);
 });
 
 // POST new product.
