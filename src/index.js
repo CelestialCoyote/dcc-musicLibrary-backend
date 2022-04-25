@@ -2,8 +2,6 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const repoContext = require('./repository/repository-wrapper');
-const productValidate = require('./middleware/product-validation');
-const productLogger = require('./middleware/product-logger');
 const songValidate = require('./middleware/song-validation');
 const songLogger = require('./middleware/song-logger');
 
@@ -25,13 +23,6 @@ app.get('/', (req, res) => {
     return res.send('Response from the express server base URL.');
 });
 
-// GET all products.
-// http://localhost:5005/products
-app.get('/api/products', (req, res) => {
-    const products = repoContext.products.findAllProducts();
-
-    return res.send(products);
-});
 
 // GET all songs.
 // http://localhost:5005/songs
@@ -41,15 +32,6 @@ app.get('/api/songs', (req, res) => {
     return res.send(songs);
 });
 
-
-// GET product by id.
-// http://localhost:5005/products/:id
-app.get('/api/products/:id', (req, res) => {
-    const id = req.params.id;
-    const product = repoContext.products.findProductById(id);
-
-    return res.send(product);
-});
 
 // GET song by id.
 // http://localhost:5005/songs/:id
@@ -61,15 +43,6 @@ app.get('/api/songs/:id', (req, res) => {
 });
 
 
-// POST new product.
-// http://localhost:5005/products
-app.post('/api/products', [productLogger, productValidate], (req, res) => {
-    const newProduct = req.body;
-    const addedProduct = repoContext.products.createProduct(newProduct);
-
-    return res.status(201).send(addedProduct);
-});
-
 // POST new song.
 // http://localhost:5005/songs
 app.post('/api/songs', [songLogger, songValidate], (req, res) => {
@@ -79,16 +52,6 @@ app.post('/api/songs', [songLogger, songValidate], (req, res) => {
     return res.status(201).send(addedSong);
 });
 
-
-// PUT update product.
-// http://localhost:5005/products/:id
-app.put('/api/products/:id',[productValidate], (req, res) => {
-    const id = parseInt(req.params.id);
-    const productPropertiesToModify = req.body;
-    const productToUpdate = repoContext.products.updateProduct(id, productPropertiesToModify);
-
-    return res.send(productToUpdate);
-});
 
 // PUT update song.
 // http://localhost:5005/songs/:id
@@ -100,15 +63,6 @@ app.put('/api/songs/:id',[songValidate], (req, res) => {
     return res.send(songToUpdate);
 });
 
-
-// DELETE product.
-// http://localhost:5005/products/:id
-app.delete('/api/products/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const deletedProduct = repoContext.products.deleteProduct(id);
-
-    return res.send(deletedProduct);
-});
 
 // DELETE song.
 // http://localhost:5005/songs/:id
